@@ -4,6 +4,7 @@ from django.views.generic import View
 from .forms import MyUserCreationForm, ConfirmForm, LoginForm
 import random
 from django.http import HttpResponse
+from django.contrib.auth import authenticate
 
 
 class SignUpView(View):
@@ -57,4 +58,25 @@ class LoginView(View):
     def get(self, request):
         form = LoginForm()
         return render(request, 'login.html', {'form': form})
+    
+    def post(self, request):
+        form = LoginForm(request.POST)
+
+        if form.is_valid():
+            mobile = form.cleaned_data.get('mobile')
+            password = form.cleaned_data.get('password')
+            user = authenticate(mobile=mobile, password=password)
+            if user.is_authenticated:
+                request.session['user_registration_info'] = {
+                                'mobile': form.cleaned_data['mobile'],
+                                'password': form.cleaned_data['password'],
+                                }
+                return HttpResponse('Log in was successful ')
+            
+            else:
+                return HttpResponse('Error')
+
+
+
+
     

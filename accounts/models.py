@@ -23,7 +23,10 @@ class CustomUserManger(BaseUserManager):
 class CustomUser(AbstractUser):
 
     username = None
-    mobile = models.CharField(max_length=15,unique=True)
+    mobile = models.CharField(max_length=11,unique=True)
     USERNAME_FIELD = 'mobile'
     REQUIRED_FIELDS = ['email']
     objects = CustomUserManger()
+
+
+    
