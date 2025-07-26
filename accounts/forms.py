@@ -12,3 +12,11 @@ class MyUserCreationForm(forms.ModelForm):
 class ConfirmForm(forms.Form):
     confirm_code = forms.CharField(max_length=5)
     
+
+class LoginForm(forms.ModelForm):
+
+    class Meta:
+        model = CustomUser
+        fields = ['mobile','password']
+
+        

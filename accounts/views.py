@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import CustomUser
 from django.views.generic import View
-from .forms import MyUserCreationForm, ConfirmForm
+from .forms import MyUserCreationForm, ConfirmForm, LoginForm
 import random
 from django.http import HttpResponse
 
@@ -46,7 +46,15 @@ class ConfirmView(View):
                 password = user_session.get('password')
                 CustomUser.objects.create_user(mobile = mobile, password=password)
                 del request.session['user_registration_info']
-                return redirect('signup')
+                return redirect('login')
             
             else:
                 return HttpResponse('error')
+            
+
+class LoginView(View):
+    
+    def get(self, request):
+        form = LoginForm()
+        return render(request, 'login.html', {'form': form})
+    
