@@ -13,10 +13,15 @@ class ConfirmForm(forms.Form):
     confirm_code = forms.CharField(max_length=5)
     
 
-class LoginForm(forms.ModelForm):
+class LoginForm(forms.Form):
+        # class Meta:
+        #     model = CustomUser
+        #     fields = ['mobile','password']
 
-    class Meta:
-        model = CustomUser
-        fields = ['mobile','password']
+        mobile = forms.CharField(max_length=11)
+        password = forms.CharField(label="Password", widget=forms.PasswordInput)
+
+
+        
 
         
