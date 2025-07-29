@@ -4,7 +4,7 @@ from django.views.generic import View
 from .forms import MyUserCreationForm, ConfirmForm, LoginForm
 import random
 from django.http import HttpResponse
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 
 class SignUpView(View):
@@ -73,11 +73,11 @@ def profile_view(request):
     
     return render(request, 'profile.html')
 
-
 class LogoutView(View):
-    
+
     def get(self, request):
-        
+        logout(request)
+        return redirect('login')
 
 
 
