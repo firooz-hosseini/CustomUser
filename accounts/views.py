@@ -67,11 +67,17 @@ class LoginView(View):
             user = authenticate(mobile=mobile, password=password)
             if user:
                 login(request, user)
-                return HttpResponse('Log in was successful')
-            else:
-                return HttpResponse('Error from valid')
-        else:
-            print(form.errors)
+                return redirect('profile')         
+            
+def profile_view(request):
+    
+    return render(request, 'profile.html')
+
+
+class LogoutView(View):
+    
+    def get(self, request):
+        
 
 
 
