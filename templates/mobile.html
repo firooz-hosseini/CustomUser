@@ -4,15 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log In</title>
+    <title>Mobile</title>
 </head>
 
 <body>
     <form action="" method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="login">
-        <h1><a href="{% url 'mobile' %}">Reset Password</a></h1>
+        {{ form }}
+        <input type="submit" value="Send">
     </form>
 </body>
 
